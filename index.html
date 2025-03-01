@@ -14,6 +14,7 @@
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
         .container {
             position: absolute;
@@ -57,6 +58,29 @@
             font-weight: bold;
             cursor: pointer;
         }
+
+        /* Snowfall effect */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            z-index: 9999;
+            color: white;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: snow 10s linear infinite;
+        }
+
+        @keyframes snow {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -81,7 +105,7 @@
     <script>
         document.getElementById("pfp").src = "https://cdn.discordapp.com/avatars/1206758465150787659/2cc16901ffb16b4683918d9ba0205af8.webp?size=1024";
         document.getElementById("status").textContent = "Got a new gf!! (yay)";
-        
+
         // Function to start the music and hide the overlay
         document.getElementById("overlay").onclick = function() {
             // Start the music and set volume
@@ -96,6 +120,23 @@
             overlay.style.display = 'none';
             container.style.display = 'block';
         };
+
+        // Snowfall effect
+        function createSnowflakes() {
+            const snowflakesCount = 50; // You can adjust this number
+            for (let i = 0; i < snowflakesCount; i++) {
+                let snowflake = document.createElement("div");
+                snowflake.classList.add("snowflake");
+                snowflake.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+                snowflake.style.animationDuration = `${Math.random() * 3 + 5}s`; // Random animation speed
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`; // Random size
+                snowflake.innerHTML = "&#10052;"; // Snowflake symbol
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        // Trigger the snowflakes on page load
+        window.onload = createSnowflakes;
     </script>
 </body>
 </html>
