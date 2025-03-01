@@ -81,6 +81,46 @@
                 opacity: 0;
             }
         }
+
+        /* Crypto Image Styles */
+        .crypto-container {
+            margin-top: 20px;
+        }
+
+        .crypto-image {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .crypto-image:hover {
+            filter: brightness(2);
+        }
+
+        /* Address overlay */
+        .crypto-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 24px;
+            padding: 20px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .crypto-overlay.active {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -97,9 +137,23 @@
             <i class="fas fa-crown"></i>
             <i class="fas fa-gem"></i>
         </div>
+
+        <!-- Crypto Images Section -->
+        <div class="crypto-container">
+            <img src="https://github.com/Blitzedzz-Site/Blitzedzz-Site.github.io/blob/main/storage/btc-outline.png?raw=true" alt="Bitcoin" class="crypto-image" data-address="bc1qw39xdc06ncc8pl622ajh05ux8v8ufl5mddznmh">
+            <img src="https://github.com/Blitzedzz-Site/Blitzedzz-Site.github.io/blob/main/storage/ltc-outline.png?raw=true" alt="Litcoin" class="crypto-image" data-address="LgmbBGFGjfBtnYCH8ZuBAYLB8s1vdj7v4d">
+            <img src="https://github.com/Blitzedzz-Site/Blitzedzz-Site.github.io/blob/main/storage/eth-outline.png?raw=true" alt="Ethereum" class="crypto-image" data-address="0x4eF6341c0b1e813811d3CA23e6C2E7dF60B4E8a3">
+        </div>
+
         <audio id="audio" controls autoplay loop muted>
             <source src="https://raw.githubusercontent.com/Blitzedzz-Site/Blitzedzz-Site.github.io/refs/heads/main/storage/HOLOCAUST.mp3" type="audio/mp3">
         </audio>
+    </div>
+
+    <!-- Crypto Address Overlay -->
+    <div id="cryptoOverlay" class="crypto-overlay">
+        <p id="cryptoAddress"></p>
+        <button onclick="closeCryptoOverlay()">Close</button>
     </div>
 
     <script>
@@ -137,6 +191,22 @@
 
         // Trigger the snowflakes on page load
         window.onload = createSnowflakes;
+
+        // Handle crypto image click to show overlay with address
+        document.querySelectorAll('.crypto-image').forEach(img => {
+            img.onclick = function() {
+                const address = this.getAttribute('data-address');
+                const overlay = document.getElementById('cryptoOverlay');
+                const addressDisplay = document.getElementById('cryptoAddress');
+                addressDisplay.textContent = `Address: ${address}`;
+                overlay.classList.add('active');
+            };
+        });
+
+        // Close the crypto address overlay
+        function closeCryptoOverlay() {
+            document.getElementById('cryptoOverlay').classList.remove('active');
+        }
     </script>
 </body>
 </html>
