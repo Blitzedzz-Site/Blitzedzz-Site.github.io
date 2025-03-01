@@ -118,8 +118,29 @@
             justify-content: center;
             font-weight: bold;
         }
+
         .crypto-overlay.active {
             display: flex;
+        }
+
+        .close-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #c44123;
+        }
+
+        .close-button:focus {
+            outline: none;
         }
     </style>
 </head>
@@ -153,7 +174,7 @@
     <!-- Crypto Address Overlay -->
     <div id="cryptoOverlay" class="crypto-overlay">
         <p id="cryptoAddress"></p>
-        <button onclick="closeCryptoOverlay()">Close</button>
+        <button class="close-button" onclick="closeCryptoOverlay()">Close</button>
     </div>
 
     <script>
