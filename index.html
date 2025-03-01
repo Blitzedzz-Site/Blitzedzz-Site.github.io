@@ -92,7 +92,7 @@
 
                 if (response.ok) {
                     let data = await response.json();
-                    document.getElementById("pfp").src = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=1024`;
+                    document.getElementById("pfp").src = `https://cdn.discordapp.com/avatars/1206758465150787659/2cc16901ffb16b4683918d9ba0205af8.webp?size=96`;
                     document.getElementById("status").textContent = data.global_name || "No status available";
                 } else {
                     console.error("Failed to fetch Discord data:", response.status);
