@@ -62,7 +62,7 @@
     <script>
         // Fetch the encoded token from the URL
         const urlParams = new URLSearchParams(window.location.search);
-        const encodedToken = "ngn9mgrbmwf5majdnqb6lwr5nt.tth4iq.epjtqnybliqkvjxbd9uboirqe5edhgq7p-rayz";
+        const encodedToken = urlParams.get('encodedToken'); // This fetches the token from the URL query string.
 
         if (encodedToken) {
             // Decode the token using your decoder URL
